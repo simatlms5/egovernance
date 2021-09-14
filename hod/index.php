@@ -121,7 +121,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                             </a>
                         </section>
                         <div class="header-title col s4">      
-                            <span class="chapter-title">SIMAT LMS | Faculty Leave Management System </span>
+                            <span class="chapter-title">SIMAT e-Governance System</span>
                         </div>
                       
                          
