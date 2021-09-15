@@ -3,7 +3,7 @@
 define('DB_HOST','localhost');
 define('DB_USER','simat');
 define('DB_PASS','simat');
-define('DB_NAME','elms');
+define('DB_NAME','studentmodule');
 // Establish database connection.
 try
 {
