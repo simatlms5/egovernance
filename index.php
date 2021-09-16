@@ -120,7 +120,7 @@ else{
                 
              
           <div class="footer">
-                    <p class="copyright"><a href="http://simat.ac.in">SIMAT e-Governance</a>©</p>
+                    <p class="copyright"><a href="http://simat.ac.in">SIMAT e-GOVERNANCE</a>©</p>
                 
                 </div>
                 </div>

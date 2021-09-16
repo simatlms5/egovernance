@@ -129,7 +129,7 @@ else{
                                 <span class="material-design-hamburger__layer"></span>
                             </a>
                         </section>
-                        <div class="header-title col s4">      
+                        <div class="header-title col s10">      
                             <span class="chapter-title">SIMAT e-Governance System</span>
                         </div>
                         <div ><img class="sreeku"  style="
@@ -166,7 +166,7 @@ else{
              
                 </ul>
           <div class="footer">
-                    <p class="copyright"><a href="http://simat.ac.in">SIMAT E-Governance</a>©</p>
+                    <p class="copyright"><a href="http://simat.ac.in">SIMAT e-GOVERNANCE</a>©</p>
                 
                 </div>
                 </div>

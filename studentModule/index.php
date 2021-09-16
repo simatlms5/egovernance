@@ -114,8 +114,8 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                                 <span class="material-design-hamburger__layer"></span>
                             </a>
                         </section>
-                        <div class="header-title col s4">      
-                            <span class="chapter-title">SIMAT LMS | Faculty Leave Management System </span>
+                        <div class="header-title col s10">      
+                            <span class="chapter-title">SIMAT e-GOVERNANCE | STUDENT</span>
                         </div>
                       
                          
@@ -154,7 +154,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                     
                 </ul>
           <div class="footer">
-                    <p class="copyright"><a href="simat.ac.in">SIMAT LMS </a>©</p>
+                    <p class="copyright"><a href="http://simat.ac.in">SIMAT e-GOVERNANCE </a>©</p>
                 
                 </div>
                 </div>

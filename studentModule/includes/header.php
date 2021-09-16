@@ -48,8 +48,8 @@
                                 <span class="material-design-hamburger__layer"></span>
                             </a>
                         </section>
-                        <div class="header-title col s3">      
-                            <span class="chapter-title">SIMAT LMS | Principal</span>
+                        <div class="header-title col s10">      
+                            <span class="chapter-title">SIMAT e-GOVERNANCE | STUDENT</span>
                         </div>
                       
                         <ul class="right col s9 m3 nav-right-menu">
