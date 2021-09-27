@@ -1,11 +1,36 @@
 <?php
+// session_start();
+// include('includes/config.php');
+// if(isset($_POST['login']))
+// {
+// $uname=$_POST['username'];
+// $password=md5($_POST['password']);
+// $sql ="SELECT UserName,Password FROM admin WHERE UserName=:uname and Password=:password";
+// $query= $dbh -> prepare($sql);
+// $query-> bindParam(':uname', $uname, PDO::PARAM_STR);
+// $query-> bindParam(':password', $password, PDO::PARAM_STR);
+// $query-> execute();
+// $results=$query->fetchAll(PDO::FETCH_OBJ);
+// if($query->rowCount() > 0)
+// {
+// $_SESSION['alogin']=$_POST['username'];
+// echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+// } else{
+  
+//   echo "<script>alert('Invalid Details');</script>";
+
+// }
+// }
+
+
 session_start();
+error_reporting(0);
 include('includes/config.php');
 if(isset($_POST['signin']))
 {
-$uname=$_POST['username'];
+$uname=$_POST['email'];
 $password=md5($_POST['password']);
-$sql ="SELECT UserName,Password FROM admin WHERE UserName=:uname and Password=:password";
+$sql ="SELECT email, password FROM stlogin WHERE email=:uname and password=:password";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':uname', $uname, PDO::PARAM_STR);
 $query-> bindParam(':password', $password, PDO::PARAM_STR);
@@ -13,14 +38,22 @@ $query-> execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 if($query->rowCount() > 0)
 {
-$_SESSION['alogin']=$_POST['username'];
-echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+$_SESSION['stlogin']=$_POST['email'];
+// $_SESSION['id']=$result->Id;
+// $_SESSION['FirstName']=$result->FirstName;
+// $_SESSION['LastName']=$result->LastName;
+echo "<script type='text/javascript'> document.location = 'stprofile.php'; </script>";
 } else{
   
   echo "<script>alert('Invalid Details');</script>";
 
 }
-}?>
+
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,7 +64,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
     <link rel="shortcut icon" href="../assets/images/logo.jpeg" type="image/ico" />
         
         <!-- Title -->
-        <title>SIMAT LMS</title>
+        <title>SIMAT e-GOVERNANCE</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <meta charset="UTF-8">
@@ -44,7 +77,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
         <link type="text/css" rel="stylesheet" href="../assets/plugins/materialize/css/materialize.min.css"/>
 
              <link href="../assets/css/materialdesign.css" rel="stylesheet">
-        <link href="./assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">        
+        <link href="../assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">        
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         	
@@ -114,12 +147,12 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                                 <span class="material-design-hamburger__layer"></span>
                             </a>
                         </section>
-                        <div class="header-title col s10">      
-                            <span class="chapter-title">SIMAT e-GOVERNANCE | STUDENT</span>
+                        <div class="header-title col s4">      
+                            <span class="chapter-title">SIMAT e-GOVERNANCE | STUDENT MODULE </span>
                         </div>
                       
                          
-                        <div ><img class="sreeku"  style="
+                        <div><img class="sreeku"  style="
                         width: 55px;
                         height:50px;
                         float:right; 
@@ -146,15 +179,16 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                 <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion" >
                     <li>&nbsp;</li>
                     <li class="no-padding"><a class="waves-effect waves-grey" href="../index.php"><i class="material-icons">account_box</i>Home</a></li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="."><i class="material-icons">account_box</i>Student login</a></li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="../applyCertificate.php"><i class="material-icons">account_box</i>Apply Certificate</a></li>
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="./signup.php"><i class="material-icons">account_box</i>Create Account</a></li>
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="applyCertificate.php"><i class="material-icons">account_box</i>Apply Certificate</a></li>
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="download.php"><i class="material-icons">account_box</i>Downlaod Certificate</a></li>
                     
                 
 
                     
                 </ul>
           <div class="footer">
-                    <p class="copyright"><a href="http://simat.ac.in">SIMAT e-GOVERNANCE </a>©</p>
+                    <p class="copyright"><a href="simat.ac.in">SIMAT e-GOVERNANCE </a>©</p>
                 
                 </div>
                 </div>
@@ -167,10 +201,33 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                           <div class="col s12 m6 l8 offset-l2 offset-m3">
                               <div class="card white darken-1">
 
-                                  <div class="card-content ">
-                                      <span class="card-title" style="font-size:20px;">Sorry!!! This Section is under maintetance..</span></span>
+                                  
+                                      <div class="row">
+                                           <form class="col s12" name="signin" method="post">
+                                           <div style="margin-top:2rem; margin-left:1rem; margin-bottom:1rem; font-size:20px; color: rgba(0, 0, 0, 0.54); font-weight: 700;">Student Login</div>
+                                               <div class="input-field col s12">
+                                                   <input id="username" type="text" name="email" class="validate" autocomplete="off" required >
+                                                   <label for="email">Email ID</label>
+                                               </div>
+                                               <div class="input-field col s12">
+                                                   <input id="password" type="password" class="validate" name="password" autocomplete="off" required>
+                                                   <label for="password">Password</label>
+                                               </div>
+                                               <div class="col s12 right-align m-t-sm">
+                                               
+                                                
+                                                   <input style="color: white; margin-right:1rem; background-color: #006e12; border-style:none; padding:7px;"  type="submit" name="signin" value="Sign in" >
+                                                  
+                                               
+                                                   <button style="margin-bottom:2rem; color: white; background-color:#005b6e; border-style:none; padding:6px;" onclick="window.location.href='forgot-password.php'">
+                                            Forgot Password ?
+                                          </button>
+                                           </form>
+                                           
                                          
-                                     
+                                           </div>
+                                           
+                                           
                                            
                                            
                                            
@@ -187,15 +244,15 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
         
         <!-- Javascripts -->
 
-        <script src="../assets/plugins/jquery/jquery-2.2.0.min.js"></script>
+        <script src="./assets/plugins/jquery/jquery-2.2.0.min.js"></script>
 
-        <script src="../assets/plugins/materialize/js/materialize.min.js"></script>
+        <script src="./assets/plugins/materialize/js/materialize.min.js"></script>
 
-        <script src="../assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
+        <script src="./assets/plugins/material-preloader/js/materialPreloader.min.js"></script>
 
-        <script src="../assets/plugins/jquery-blockui/jquery.blockui.js"></script>
+        <script src="./assets/plugins/jquery-blockui/jquery.blockui.js"></script>
 
-        <script src="../assets/js/alpha.min.js"></script>
+        <script src="./assets/js/alpha.min.js"></script>
         
     </body>
 </html>

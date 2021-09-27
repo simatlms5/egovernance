@@ -4,6 +4,10 @@ include('includes/config.php');
 if(isset($_POST['signin']))
 {
 $uname=$_POST['username'];
+if($uname=='admin'){
+    echo "<script>alert('Invalid Details');</script>";
+    echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+}
 $password=md5($_POST['password']);
 $sql ="SELECT UserName,Password,dept_code,EmpId FROM admin WHERE UserName=:uname and Password=:password";
 $query= $dbh -> prepare($sql);
@@ -36,7 +40,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
     <link rel="shortcut icon" href="../assets/images/logo.jpeg" type="image/ico" />
         
         <!-- Title -->
-        <title>SIMAT LMS</title>
+        <title>SIMAT e-GOVERNANCE | HOD</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <meta charset="UTF-8">
@@ -121,7 +125,7 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                             </a>
                         </section>
                         <div class="header-title col s4">      
-                            <span class="chapter-title">SIMAT e-Governance System</span>
+                            <span class="chapter-title">SIMAT e-GOVERNANCE SYSTEM</span>
                         </div>
                       
                          
@@ -150,24 +154,25 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                    
                 
                 <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion" >
-                    <li>&nbsp;</li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="../index.php"><i class="material-icons">account_box</i>Home</a></li>
+                <li class="no-padding"><a class="waves-effect waves-grey" href="../index.php"><i class="material-icons">account_box</i>Home</a></li>
+                   
+                   <li class="no-padding"><a class="waves-effect waves-grey" href="../facindex.php"><i class="material-icons">account_box</i>Faculty Login</a></li>
+                   
+               
 
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="../facindex.php"><i class="material-icons">account_box</i>Faculty Login</a></li>
-                    
-                
+                      <li class="no-padding"><a class="waves-effect waves-grey" href="../admin/index.php"><i class="material-icons">account_box</i>Admin Login</a></li>
 
-                       <li class="no-padding"><a class="waves-effect waves-grey" href="../admin/index.php"><i class="material-icons">account_box</i>Admin Login</a></li>
+                      <li class="no-padding"><a class="waves-effect waves-grey" href="../hod/index.php"><i class="material-icons">account_box</i>HOD Login</a></li>
 
-                       <li class="no-padding"><a class="waves-effect waves-grey" href="../hod/index.php"><i class="material-icons">account_box</i>HOD Login</a></li>
+                      <li class="no-padding"><a class="waves-effect waves-grey" href="../principal/index.php"><i class="material-icons">account_box</i>Principal Login</a></li>
 
-                       <li class="no-padding"><a class="waves-effect waves-grey" href="../principal/index.php"><i class="material-icons">account_box</i>Principal Login</a></li>
+                      <li class="no-padding"><a class="waves-effect waves-grey" href="../HR/index.php"><i class="material-icons">account_box</i>HR Login</a></li>
+                      <li class="no-padding"><a class="waves-effect waves-grey" href="../off_staff/index.php"><i class="material-icons">account_box</i>Office Staff login</a></li>
 
-                       <li class="no-padding"><a class="waves-effect waves-grey" href="../HR/index.php"><i class="material-icons">account_box</i>HR Login</a></li>
-                       <li class="no-padding"><a class="waves-effect waves-grey" href="../applyCertificate.php"><i class="material-icons">account_box</i>Apply Certificate</a></li>
+                       
                 </ul>
           <div class="footer">
-                    <p class="copyright"><a href="simat.ac.in">SIMAT LMS </a>©</p>
+                    <p class="copyright"><a href="simat.ac.in">SIMAT e-GOVERNANCE </a>©</p>
                 
                 </div>
                 </div>

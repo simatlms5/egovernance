@@ -48,8 +48,8 @@
                                 <span class="material-design-hamburger__layer"></span>
                             </a>
                         </section>
-                        <div class="header-title col s10">      
-                            <span class="chapter-title">SIMAT e-Governance System | Faculty</span>
+                        <div class="header-title col s3">      
+                            <span class="chapter-title">SIMAT e-GOVERNANCE SYSTEM | Faculty</span>
                         </div>
                      
                 

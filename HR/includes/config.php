@@ -1,8 +1,8 @@
 <?php 
 // DB credentials.
 define('DB_HOST','localhost');
-define('DB_USER','simat');
-define('DB_PASS','simat');
+define('DB_USER','root');
+define('DB_PASS','');
 define('DB_NAME','elms');
 // Establish database connection.
 try

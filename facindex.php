@@ -50,7 +50,7 @@ else{
     <link rel="shortcut icon" href="assets/images/logo.jpeg" type="image/ico" />
         
         <!-- Title -->
-        <title>SIMAT LMS</title>
+        <title>SIMAT e-GOVERNANCE</title>
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <meta charset="UTF-8">
@@ -129,8 +129,8 @@ else{
                                 <span class="material-design-hamburger__layer"></span>
                             </a>
                         </section>
-                        <div class="header-title col s10">      
-                            <span class="chapter-title">SIMAT e-Governance System</span>
+                        <div class="header-title col s4">      
+                            <span class="chapter-title">SIMAT e-GOVERNANCE SYSTEM</span>
                         </div>
                         <div ><img class="sreeku"  style="
                         width: 55px;
@@ -158,10 +158,12 @@ else{
                     <li>&nbsp;</li>
                     <li class="no-padding"><a class="waves-effect waves-grey" href="./index.php"><i class="material-icons">account_box</i>Home</a></li>
                     <li class="no-padding"><a class="waves-effect waves-grey" href=""><i class="material-icons">account_box</i>Faculty Login</a></li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="../egovernance/hod"><i class="material-icons">account_box</i>HOD Login</a></li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="../egovernance/principal"><i class="material-icons">account_box</i>Principal Login</a></li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="../egovernance/HR/"><i class="material-icons">account_box</i>HR Login</a></li>
-                    <li class="no-padding"><a class="waves-effect waves-grey" href="../egovernance/admin"><i class="material-icons">account_box</i>Admin Login</a></li>
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="../simatlms/admin/"><i class="material-icons">account_box</i>Admin Login</a></li>
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="../simatlms/hod"><i class="material-icons">account_box</i>HOD Login</a></li>
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="../simatlms/principal"><i class="material-icons">account_box</i>Principal Login</a></li>
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="../simatlms/HR/"><i class="material-icons">account_box</i>HR Login</a></li>
+                    <li class="no-padding"><a class="waves-effect waves-grey" href="../simatlms/off_staff"><i class="material-icons">account_box</i>Office Staff login</a></li>
+                    
                 
              
                 </ul>
