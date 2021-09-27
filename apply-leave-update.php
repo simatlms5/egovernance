@@ -7,7 +7,6 @@ if(strlen($_SESSION['emplogin'])==0)
 header('location:index.php');
 }
 else{
-    $did=intval($_GET['leaveid']); 
     // insert code for checking if leave count is less than 12
     // code for inserting into leave table
     if(isset($_POST['apply']))
@@ -20,7 +19,7 @@ else{
         // $alternatearr=$_POST['altarr'];
         $dept=$_SESSION['deptcode'];
         $leavedays=$_POST['nofdays'];
-        $arrangement=$_POST['finalarrangement2'];
+        $arrangement=$_POST['finalarrangement'];
         $status=0;
         $isread=0;
         if($fromdate > $todate){
@@ -97,21 +96,8 @@ else{
         {
             $error="Something went wrong. Please try again";
         }
-
+    
     }
-
-    $sql3 = "SELECT * FROM tblprincipal where id=:did";
-    $query = $dbh->prepare($sql3);
-    $query->bindParam(':did',$did,PDO::PARAM_STR);
-    $query->execute();
-    $leaveData=$query->fetchAll(PDO::FETCH_OBJ);
-    if($query->rowCount() > 0)
-    {
-    foreach($leaveData as $ldata)
-    { 
-
-
-
     ?>
 
 <!DOCTYPE html>
@@ -144,6 +130,12 @@ else{
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
+.hide {
+  display: none;
+}
+p {
+  font-weight: bold;
+}
 .succWrap{
     padding: 10px;
     margin: 0 0 20px 0;
@@ -169,7 +161,8 @@ else{
                     <div class="col s12 m12 l8">
                         <div class="card">
                             <div class="card-content">
-                                <form id="example-form" method="post" name="addemp">
+                                <form id="example-form" 
+onsubmit="return  myFunction22() " method="post" name="addemp">
                                     <div>
                                         <h5>Provide the details below :</h5  >
                                         <section>
@@ -180,12 +173,10 @@ else{
      <?php if($error){?><div class="errorWrap"><strong>Note </strong>:<?php echo htmlentities($error); ?> </div><?php } 
                 else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 
-
-
 <!-- Select Leave Type -->
  <div class="input-field col  s12">
 <select  name="leavetype" autocomplete="off">
-<option value="<?php echo htmlentities($ldata->LeaveType);?>" selected><?php echo htmlentities($ldata->LeaveType);?></option>
+<option value="">Select leave type...</option>
 <?php $sql = "SELECT  LeaveType from tblleavetype";
 $query = $dbh -> prepare($sql);
 $query->execute();
@@ -199,30 +190,69 @@ foreach($results as $result)
 <?php }} ?>
 </select>
 </div>
+<script>
+ 
+function show2s(){
+  document.getElementById('div1').style.display = 'block';
+}
+</script>
 
 
 
 <!-- Leave Details -->
 <div class="input-field col m6 s12">
 <label for="fromdate"></label>
-<input id="mask1" name="fromdate" type="date" class='input-group date' value="<?php echo htmlentities($ldata->FromDate);?>" autocomplete="off" required>
+<input id="sree" onchange="adddate()" name="fromdate" type="date" class='input-group date'  autocomplete="off" required>
 </div>
 
 <div class="input-field col m6 s12">
 <label for="todate"></label>
-<input id="mask1" name="todate" type="date" class='input-group date' value="<?php echo htmlentities($ldata->ToDate);?>" autocomplete="off" required>
-</div>
+<input  id="sree2" onchange="adddate()" name="todate" type="date" class='input-group date'  autocomplete="off" required>
 
-<?php $max=12-$_SESSION['lvcasualcount']; ?>
-<div class="input-field col m6 s12">
-    <label for="days">No of days:</label>
-    <input type="number" id="nofdays" name="nofdays" value="<?php echo htmlentities($ldata->DayCount);?>" min="1" max ="<?php echo htmlentities($max);?>"> 
 </div>
+<p>Note : If your leave dates contains two different months, kindly apply the leaves seperately for each month.</p>
+<?php $max=12-$_SESSION['lvcasualcount']; ?>
+<div  class="input-field col m6 s12">
+<input style="display: none;" id="sree3" name="nofdays" min="1" max ="<?php echo htmlentities($max);?>">
+</div>
+<script>
+ 
+  function adddate(){
+    date1=document.getElementById('sree').value;
+    date2=document.getElementById('sree2').value;
+    date1=new Date(date1)
+    date2=new Date(date2)
+    const diffTime = Math.abs(date2 - date1);
+    const diffDays = (Math.ceil(diffTime / (1000 * 60 * 60 * 24))) + 1;
+   
+    
+
+
+    var x = document.getElementById("sree3");
+    x.style.display = "block";
+    console.log(date1)
+    anirudh=date2
+    console.log(anirudh)
+    if(anirudh=="Invalid Date"){
+    document.getElementById("sree3").value="Please specify end date"
+        
+    }else{
+        document.getElementById("sree3").value=diffDays
+
+    }
+  
+    
+  
+
+  }
+  
+
+</script>
+
 
 <div class="input-field col m12 s12">
     <label for="birthdate">Description</label>    
-
-    <textarea id="textarea1" name="description" class="materialize-textarea" length="500" required><?php echo htmlentities($ldata->Description);?></textarea> 
+    <textarea id="textarea1" name="description" class="materialize-textarea" length="500" required></textarea>
 </div>
 
 <div class="input-field col m12 s12">
@@ -236,10 +266,27 @@ foreach($results as $result)
 
 
 </form>
-<form id="myForm" >
+
+<script>
+function  myFunction22() {
+var date=new Date;
+
+let x = document.forms["addemp"]["fromdate"].value;
+  var date2=new Date(x)
+  if ((date2)<Date) {
+    alert("Sorry, you cannot apply leaves for past dates.");
+    return false;
+  }
+}
+</script>
+
+
+
+
+<form id="myForm" name="altern" >
         <div class="input-field col m4 s12">
             <h6>Date</h6>
-            <input type="date" > <br> <br>
+            <input name="alterdate" type="date" > <br> <br>
         </div>
         <div class="input-field col m8 s12">
             <h6>Subject</h6> 
@@ -284,53 +331,54 @@ foreach($results as $result)
             document.getElementById("myForm").elements[3].value=""
             document.getElementById("myForm").elements[4].value=""
             document.getElementById("myForm").elements[5].value=""
+           
     
         }
-
-    
-         function myFunction(){
-        //     let date=new Date()
-        //     let sree=document.getElementById("myForm").elements[0].value;
         
-        //     if(document.getElementById("myForm").elements[0].value!=""&&
-        //     document.getElementById("myForm").elements[1].value!=""&&
-        //     document.getElementById("myForm").elements[2].value!=""&&
-        //     document.getElementById("myForm").elements[3].value!=""&&
-        //     document.getElementById("myForm").elements[4].value!=""&&
-        //     document.getElementById("myForm").elements[5].value!=""){
-        //     let a=""+document.getElementById("myForm").elements[0].value;+"'"
-        //     let b=""+document.getElementById("myForm").elements[1].value;+"'"
-        //     let c=""+document.getElementById("myForm").elements[2].value;+"'"
-        //     let d=""+document.getElementById("myForm").elements[3].value;+"'"
-        //     let e=""+document.getElementById("myForm").elements[4].value;+"'"
-        //     let f=""+document.getElementById("myForm").elements[5].value;+"'"
+        
     
-        //     date.push(a)
-        //     sub.push(b)
-        //     period.push(c)
-        //     sem.push(d)
-        //     branch.push(e)
-        //     altf.push(f)
+        function myFunction(){
+             if (document.getElementById("myForm").elements[0].value!=""&&
+        
+             document.getElementById("myForm").elements[1].value!=""&&
+            document.getElementById("myForm").elements[2].value!=""&&
+            document.getElementById("myForm").elements[3].value!=""&&
+            document.getElementById("myForm").elements[4].value!=""&&
+
+            document.getElementById("myForm").elements[5].value!=""){
+            let a=""+document.getElementById("myForm").elements[0].value;+"'"
+            let b=""+document.getElementById("myForm").elements[1].value;+"'"
+            let c=""+document.getElementById("myForm").elements[2].value;+"'"
+            let d=""+document.getElementById("myForm").elements[3].value;+"'"
+            let e=""+document.getElementById("myForm").elements[4].value;+"'"
+            let f=""+document.getElementById("myForm").elements[5].value;+"'"
     
-        //     arrangement.push(a+"   "+b+"   "+c+"   "+d+"   "+e+"   "+f)
+            date.push(a)
+            sub.push(b)
+            period.push(c)
+            sem.push(d)
+            branch.push(e)
+            altf.push(f)
+    
+            arrangement.push("Date :"+a+"    "+"Subject :"+b+"    "+"Period :"+c+"    "+"Semester :"+d+"    "+"Branch :"+e+"    "+"Alternate Faculty :"+e+"")
             
-        //     embedElements()
-        //     document.getElementById('finalarrangement2').innerHTML =document.getElementById('finalarrangement2').value+arrangement;
-        //   myFunction2()
+            embedElements()
+           myFunction2()
             
     
           
-            addmore()      
-           // displayArrangement()  
+            addmore()   
+           
+            //displayArrangement()  
     
-        //     document.getElementById("demo").innerHTML = x;
-        //     document.getElementById("demo2").innerHTML =y;
-        // }
-        //  else{
-        //      alert("PLEASE FILL ALL COLUMNS :)")
-        //  }
-         }
-    
+            //document.getElementById("demo").innerHTML = x;
+            ///document.getElementById("demo2").innerHTML =y;
+        }
+      
+        else{
+            alert("PLEASE FILL ALL COLUMNS :)")
+        }
+        }
     </script> <br> <br> 
     
  
@@ -347,36 +395,24 @@ foreach($results as $result)
     <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
     
   
-         <h5 id="heading" style="color: black;"></h5>
-        <div style="color: black;" id="result"></div>
-       <textarea style="color: black;border:1px solid black"  id="finalarrangement" hidden name="finalarrangement">  </textarea>
-       <h5 style="color: black;">Full arrangements (Can Edit)</h5>
-       <textarea style="border:3px solid black;min-height:200px;color:black;background-color:yellowgreen;font-size:17px;"  id="finalarrangement2" name="finalarrangement2"> <?php echo htmlentities($ldata->AltArrangement);?> </textarea>
-       <?php }} ?>
+    
+        <div id="result"></div>
+       <textarea hidden  id="finalarrangement" name="finalarrangement"></textarea>
+       
         
         <script>
-        let sreram=document.getElementById("finalarrangement2").value;
         {
             
             function embedElements(){
                 document.getElementById('result').innerHTML="";
-                document.getElementById('finalarrangement2').innerHTML="";
-
-               
                 arrangement.forEach(el => {
                     let i=0
-                    document .getElementById('finalarrangement2').innerHTML +=`${el}`+"\n";
-                    document .getElementById('heading').innerHTML="New Arrangements";
-                   
-           
                     document.getElementById('result').innerHTML += `<textarea id=`+i+`>${el}</textarea><br />`;
-                   
-                  
+                    //document.getElementById('sree').innerHTML += el+"\n";
                 // here result is the id of the div present in the dom
                 i=i+1
                
                 });
-               
             
             };
         }
@@ -385,7 +421,6 @@ foreach($results as $result)
         for (let i = 0; i <arrangement.length; i++) {
         text += arrangement[i]+"\n" ;
         }
-   
         document.getElementById("finalarrangement").innerHTML = text;
     }
   
@@ -408,7 +443,7 @@ foreach($results as $result)
     </script> 
 
 
-<button type="submit" name="apply" id="apply" class="waves-effect waves-light btn indigo m-b-xs">Update Leave</button>                                             
+<button type="submit" name="apply" id="apply" class="waves-effect waves-light btn indigo m-b-xs">Apply Leave</button>                                             
 
                                                 </div>
                                             </div>
