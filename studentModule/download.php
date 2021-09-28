@@ -15,6 +15,7 @@ if(isset($_POST['submit'])){
         foreach($results as $result)
         {
              header('Content-Type:'.$result->mime);
+             header("Content-Disposition: attatchment; filename=bonafide-cert.pdf");
              echo $result->pdf_file;
         }
     }
