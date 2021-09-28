@@ -56,7 +56,7 @@ $msg="Certificate details updated Successfully";
     <head>
         
         <!-- Title -->
-        <title>Admin | Leave Details </title>
+        <title>Principal PA | Certificate Details </title>
         <link rel="shortcut icon" href="../assets/images/logo.jpeg" type="image/ico" />
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -101,13 +101,13 @@ $msg="Certificate details updated Successfully";
             <main class="mn-inner">
                 <div class="row">
                     <div class="col s12">
-                        <div class="page-title" style="font-size:24px;">Leave Details</div>
+                        <div class="page-title" style="font-size:24px;">Certificate Details</div>
                     </div>
                    
                     <div class="col s12 m12 l12">
                         <div class="card">
                             <div class="card-content">
-                                <span class="card-title">Leave Details</span>
+                                <span class="card-title">Certificate Details</span>
                                 <?php if($msg){?><div class="succWrap"><strong>SUCCESS</strong> : <?php echo htmlentities($msg); ?> </div><?php }?>
                                 <table id="example" class="display responsive-table ">
                                
