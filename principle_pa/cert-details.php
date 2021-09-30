@@ -192,7 +192,7 @@ if($stats==1){
  <?php } ?>
 </td>
 </tr>
-<form target="_blank" action="../StudentModule/certificate/bonafide_cert.php?documentno=<?php echo htmlentities($result->DocumentNumber);?>" method="post">
+<form target="_blank" action="../studentModule/certificate/bonafide_cert.php?documentno=<?php echo htmlentities($result->DocumentNumber);?>" method="post">
 <tr>
     <td><h5 style="font-weight:bold;color:#434544">Tuition Fee</h5> </td></tr><tr>
 
