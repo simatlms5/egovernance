@@ -11,7 +11,17 @@ $mail = new PHPMailer(true);
 try {
     //Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
+    $mail->isSMTP();    
+    
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
+    
+    //Send using SMTP
     $mail->Host       = 'localhost';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = false;                                   //Enable SMTP authentication
     $mail->Username   = 'egov@simat.ac.in';                     //SMTP username
