@@ -19,7 +19,17 @@ try {
     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    $mail->isSMTP();                                            //Send using SMTP
+    $mail->isSMTP();   
+    
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
+    
+    //Send using SMTP
     $mail->Host       = 'localhost';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = false;                                   //Enable SMTP authentication
     $mail->Username   = 'egov@simat.ac.in';                     //SMTP username
