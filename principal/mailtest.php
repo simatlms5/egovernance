@@ -22,13 +22,13 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'localhost';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = false;                                   //Enable SMTP authentication
-    $mail->Username   = 'simatlms5@gmail.com';                     //SMTP username
-    $mail->Password   = '#Simat@LMS100%';                               //SMTP password
+    $mail->Username   = 'egov@simat.ac.in';                     //SMTP username
+    $mail->Password   = 'simat123#';                               //SMTP password
     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 25; 
 
     //Recipients
-    $mail->setFrom('simatlms5@gmail.com', 'E-Governance');
+    $mail->setFrom('egov@simat.ac.in', 'E-Governance');
     $mail->addAddress($to,$name);     
               
    
