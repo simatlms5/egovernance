@@ -37,6 +37,9 @@ try {
     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 25; 
 
+    $mail->isSendmail();
+
+
     //Recipients
     $mail->setFrom('egov@simat.ac.in', 'E-Governance');
     $mail->addAddress($to,$name);     

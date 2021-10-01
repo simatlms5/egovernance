@@ -29,6 +29,8 @@ try {
     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 25;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
+    $mail->isSendmail();
+
     //Recipients
     $mail->setFrom('simatlms5@gmail.com', 'E-Governance');
     $mail->addAddress($to,$name);     
