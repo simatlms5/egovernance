@@ -189,7 +189,7 @@ if($stats==1){
                                     </tbody>
                                 </table>
                             </div>
-                            <form action="" method="post">
+                            <form action="" method="post" onsubmit="return confirm('Please check the details, are you sure you want to submit?');">
                 <div style="background:white" > 
                 <h5 style="text-align: center; font-weight: bold;padding-top:10px">Fee Structure</h5>
                 <br><h6 style="text-align: center;font-weight: bold;font-size:16px">Tuition Fee</h6>
