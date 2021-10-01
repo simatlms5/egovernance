@@ -35,7 +35,7 @@ try {
     $mail->Username   = 'egov@simat.ac.in';                     //SMTP username
     $mail->Password   = 'simat123#';                               //SMTP password
     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 25; 
+    $mail->Port       = 465; 
 
     $mail->isSendmail();
 
