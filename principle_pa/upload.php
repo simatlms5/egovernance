@@ -55,8 +55,11 @@ if(isset($_POST['submit'])){
         {
             
             if($result->Status==1){
+                echo "<h4>Uploaded Succesfully</h4>";
 
-            } else {
+            } else { "<h4>Uploading Failed!!Please Try again</h4>";
+                
+             
                 
             }
         }
