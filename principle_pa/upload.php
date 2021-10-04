@@ -126,11 +126,11 @@ if(isset($_POST['submit'])){
         {
             
             if($result->Status==1){
-                echo "<h6>Uploaded Succesfully</h6>";
+                echo "<h6 style='color:green'>Uploaded Succesfully</h6>";
 
             } elseif($result->Status!=1) { 
                  
-                echo "<h4>Uploading Failed!!Please Try again</h4>";
+                echo "<h4 style='color:red'>Uploading Failed!!Please Try again</h4>";
                 
              
                 
