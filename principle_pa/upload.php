@@ -44,27 +44,7 @@ if(isset($_POST['submit'])){
         }
     }
 
-    $sql3 = "SELECT Status FROM bonafide_cert where DocumentNumber=:docno";
-    $query = $dbh->prepare($sql3);
-    $query->bindParam(':docno',$docno,PDO::PARAM_STR);
-    $query->execute();
-    $results=$query->fetchAll(PDO::FETCH_OBJ);
-    if($query->rowCount() > 0)
-    {
-        foreach($results as $result)
-        {
-            
-            if($result->Status==1){
-                echo "<h4>Uploaded Succesfully</h4>";
-
-            } else { "<h4>Uploading Failed!!Please Try again</h4>";
-                
-             
-                
-            }
-        }
-    }
-    
+   
     
     
     
@@ -135,6 +115,27 @@ if(isset($_POST['submit'])){
                                            <form class="col s12" name="submit" method="post" enctype="multipart/form-data">
                                            <div class="input-field col s12"> 
                                                <h5>
+                                                   <?php  $sql3 = "SELECT Status FROM bonafide_cert where DocumentNumber=:docno";
+    $query = $dbh->prepare($sql3);
+    $query->bindParam(':docno',$docno,PDO::PARAM_STR);
+    $query->execute();
+    $results=$query->fetchAll(PDO::FETCH_OBJ);
+    if($query->rowCount() > 0)
+    {
+        foreach($results as $result)
+        {
+            
+            if($result->Status==1){
+                echo "<h5>Uploaded Succesfully</h5>";
+
+            } else {  "<h4>Uploading Failed!!Please Try again</h4>";
+                
+             
+                
+            }
+        }
+    }
+    ?>
                                                    
                                                </h5>
                                                  <h5 style="font-size: 16px;font-weight:bold">Enter Document Number:</h5> 
