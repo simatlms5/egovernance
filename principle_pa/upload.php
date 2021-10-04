@@ -43,6 +43,24 @@ if(isset($_POST['submit'])){
             smtp_mailer($mailid,'Your Certificate Application has been Approved.',$name,$docno); 
         }
     }
+
+    $sql3 = "SELECT Status FROM bonafide_cert where DocumentNumber =: docno";
+    $query = $dbh->prepare($sql3);
+    $query->bindParam(':docno',$docno,PDO::PARAM_STR);
+    $query->execute();
+    $results=$query->fetchAll(PDO::FETCH_OBJ);
+    if($query->rowCount() > 0)
+    {
+        foreach($results as $result)
+        {
+            
+            if($result->Status==1){
+
+            } else {
+                
+            }
+        }
+    }
     
     
     
