@@ -214,7 +214,7 @@ if($stats==1){
                 <input placeholder="Second  Year" style="width: 150px;margin:25px" type="text" name="trfee2">
                 <input style="width: 150px;margin:25px" placeholder="Third Year" type="text" name="trfee3">
                 <input style="width: 150px;margin:25px" placeholder="Fourth Year"  type="text" name="trfee4"></h5>
-                <h6 style="margin-bottom: 20px;text-align: center;font-weight: bold;"> <input type="submit" class="waves-effect waves-light btn blue m-b-xs" name="update" value="Submit"><br>
+                <h6 style="margin-bottom: 20px;text-align: center;font-weight: bold;"> <input type="submit" class="waves-effect waves-light btn blue m-b-xs" onclick="return confirm('Are you sure you want to submit this form?')" name="update" value="Submit"><br>
             </h6> <br>
                 
                 </div>
