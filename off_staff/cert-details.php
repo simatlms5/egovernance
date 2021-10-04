@@ -189,6 +189,7 @@ if($stats==1){
                                     </tbody>
                                 </table>
                             </div>
+<?php if($stats==0) { ?>
                             <form action="" method="post" onsubmit="return confirm('Please check the details, are you sure you want to submit?');">
                 <div style="background:white" > 
                 <h5 style="text-align: center; font-weight: bold;padding-top:10px">Fee Structure</h5>
@@ -219,6 +220,8 @@ if($stats==1){
                 
                 </div>
                 </form>
+
+                <?php } ?>
                         </div>
                     </div>
                 </div>
