@@ -44,7 +44,7 @@ if(isset($_POST['submit'])){
         }
     }
 
-    $sql3 = "SELECT Status FROM bonafide_cert where DocumentNumber =: docno";
+    $sql3 = "SELECT Status FROM bonafide_cert where DocumentNumber=:docno";
     $query = $dbh->prepare($sql3);
     $query->bindParam(':docno',$docno,PDO::PARAM_STR);
     $query->execute();
@@ -134,6 +134,9 @@ if(isset($_POST['submit'])){
                                        <div class="row">
                                            <form class="col s12" name="submit" method="post" enctype="multipart/form-data">
                                            <div class="input-field col s12"> 
+                                               <h5>
+                                                   
+                                               </h5>
                                                  <h5 style="font-size: 16px;font-weight:bold">Enter Document Number:</h5> 
                                            </div>
 
