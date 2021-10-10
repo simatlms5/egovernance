@@ -150,14 +150,14 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
                    
                
 
-                      <li class="no-padding"><a class="waves-effect waves-grey" href="../admin/index.php"><i class="material-icons">account_box</i>Admin Login</a></li>
+                      <!-- <li class="no-padding"><a class="waves-effect waves-grey" href="../admin/index.php"><i class="material-icons">account_box</i>Admin Login</a></li>
 
                       <li class="no-padding"><a class="waves-effect waves-grey" href="../hod/index.php"><i class="material-icons">account_box</i>HOD Login</a></li>
 
                       <li class="no-padding"><a class="waves-effect waves-grey" href="../principal/index.php"><i class="material-icons">account_box</i>Principal Login</a></li>
 
                       <li class="no-padding"><a class="waves-effect waves-grey" href="../HR/index.php"><i class="material-icons">account_box</i>HR Login</a></li>
-                      <li class="no-padding"><a class="waves-effect waves-grey" href="../off_staff/index.php"><i class="material-icons">account_box</i>Office Staff login</a></li>
+                      <li class="no-padding"><a class="waves-effect waves-grey" href="../off_staff/index.php"><i class="material-icons">account_box</i>Office Staff login</a></li> -->
                 </ul>
           <div class="footer">
                     <p class="copyright"><a href="simat.ac.in">SIMAT e-GOVERNANCE </a>©</p>
