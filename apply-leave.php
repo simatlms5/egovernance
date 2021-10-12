@@ -273,7 +273,7 @@ var date=new Date;
 
 let x = document.forms["addemp"]["fromdate"].value;
   var date2=new Date(x)
-  if ((date2)<Date) {
+  if ((date2)<date) {
     alert("Sorry, you cannot apply leaves for past dates.");
     return false;
   }
