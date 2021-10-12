@@ -1,7 +1,8 @@
 <?php
 session_start();
-error_reporting(0);
+// error_reporting(0);
 include('includes/config.php');
+include('./mailnotification.php');
 if(strlen($_SESSION['emplogin'])==0)
     {   
 header('location:index.php');
@@ -9,8 +10,30 @@ header('location:index.php');
 else{
     // insert code for checking if leave count is less than 12
     // code for inserting into leave table
+        $hod=$_SESSION['emplogin'];
+        echo $hod;
+        $mailhod = "SELECT EmailId from admin where UserName=:hod";
+        $query = $dbh->prepare($mailhod);
+        $query->bindParam(':hod',$hod,PDO::PARAM_STR);
+        $query->execute();
+        $results=$query->fetchAll(PDO::FETCH_OBJ);
+        $hodmail = array();
+        if($query->rowCount() > 0)
+        {
+            foreach($results as $result)
+            {
+                
+                $hodmail = $result->EmailId;
+                // $firstName=$result->Empfname;
+                // $lastName=$result->Emplname;
+                // $name = $firstName.''.$lastName;
+            }
+        }
     if(isset($_POST['apply']))
     {
+        
+
+
         $empid=$_SESSION['eid'];
         $leavetype=$_POST['leavetype'];
         $fromdate=$_POST['fromdate'];  
@@ -28,7 +51,6 @@ else{
             $error="You have exceeded your Casual Leave limit. Please contact your HOD.";
         }
         
-
         switch($dept){
 
             case "2":
@@ -54,6 +76,24 @@ else{
                 $selectTable = "tblleaves";
 
         }
+        // $mailhod = "SELECT admin.EmailId as hodmail, tblemployees.FirstName as Empfname, tblemployees.LastName as Emplname from admin JOIN tblemployees on admin.dept_code=tblemployees.dept_code where admin.UserName=:hod";
+        // $hod=$_SESSION['emplogin'];
+        // $mailhod = "SELECT EmailId from admin where UserName=:hod";
+        // $query = $dbh->prepare($mailhod);
+        // $query->bindParam(':hod',$hod,PDO::PARAM_STR);
+        // $query->execute();
+        // $results=$query->fetchAll(PDO::FETCH_OBJ);
+        // if($query->rowCount() > 0)
+        // {
+        //     foreach($results as $result)
+        //     {
+        //         $hodmail = $result->EmailId;
+        //         // $firstName=$result->Empfname;
+        //         // $lastName=$result->Emplname;
+        //         // $name = $firstName.''.$lastName;
+        //     }
+        // }
+           
 
     
 
@@ -91,6 +131,7 @@ else{
         if($lastInsertId)
         {
             $msg="Leave applied successfully";
+            smtp_mailer($GLOBALS['hodmail'],"Leave Application","Aswin");
         }
         else 
         {
