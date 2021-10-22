@@ -174,10 +174,12 @@ if($stats==3){
                                                 <?php } if($stats==4)  { ?>
                                                 <span style="color: orange">Application Returned</span>
                                                 <?php } if($stats==2)  { ?>
-                                                <span style="color: red">Not Approved</span>
+                                                <span style="color: red">Rejected by HOD</span>
                                                  <?php } if($stats==0)  { ?>
  <span style="color: blue">Waiting for approval</span>
- <?php } ?>
+ <?php } if($stats==5) { ?>
+                                                <span style="color: red">Rejected by Principal</span>
+                                                 <?php } ?>  
 
 
                                              </td>

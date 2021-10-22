@@ -378,10 +378,12 @@ if($stats==3){
  <?php } if($stats==4)  { ?>
 <span style="color: orange">Application Returned</span>
 <?php } if($stats==2)  { ?>
-<span style="color: red">Not Approved</span>
+<span style="color: red">Rejected by HOD</span>
 <?php } if($stats==0)  { ?>
- <span style="color: blue">Waiting for approval</span>
- <?php } ?>
+<span style="color: blue">Waiting for approval</span>
+<?php } if($stats==5) { ?>
+<span style="color: red">Rejected by Principal</span>
+<?php } ?>  
 </td>
 </tr>
 
@@ -423,7 +425,7 @@ if($stats==3)
           <select class="browser-default" name="status" required="">
                                             <option value="">Choose your option</option>
                                             <option value="1">Approved</option>
-                                            <option value="2">Not Approved</option>
+                                            <option value="5">Not Approved</option>
                                         </select></p>
                                         <p><textarea id="textarea1" name="description" class="materialize-textarea" name="description" placeholder="Description" length="500" maxlength="500" required></textarea></p>
     </div>
