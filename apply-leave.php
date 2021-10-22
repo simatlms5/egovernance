@@ -205,7 +205,7 @@ onsubmit="return  myFunction22() " method="post" name="addemp">
 
 <!-- Select Leave Type -->
  <div class="input-field col  s12">
-<select  name="leavetype" autocomplete="off">
+<select  id="selectval"  name="leavetype" autocomplete="off">
 <option value="">Select leave type...</option>
 <?php $sql = "SELECT  LeaveType from tblleavetype";
 $query = $dbh -> prepare($sql);
@@ -299,18 +299,36 @@ function show2s(){
 
 <script>
 function  myFunction22() {
+    if(document.getElementById("selectval").value=="Casual Leave"){
+        var date=new Date;
+
+        let x = document.forms["addemp"]["fromdate"].value;
+        var date2=new Date(x)
+        var date2=date2.getDate()
+        var date=date.getDate()
+        if ((date2)<date) {
+            alert("Sorry, you cannot apply leaves for past dates.");
+            return false;
+        }
+        }else{
+            var date=new Date;
+
+        let x = document.forms["addemp"]["fromdate"].value;
+        var date2=new Date(x)
+        var date2=date2.getDate()
+        var date=date.getDate()
+        if ((date2)>=date) {
+            alert("Sorry, you cannot apply leaves for Upcoming Days dates.");
+            return false;
+        }
+
+        }
+        
+
+    }
 var date=new Date;
 
-let x = document.forms["addemp"]["fromdate"].value;
-  var date2=new Date(x)
-  var datesree=date2.getDate
-  var datesree2=date.getDate
-  console.log(datesree)
-  console.log(datesree2)
-  if (datesree<datesree2) {
-    alert("Sorry, you cannot apply leaves for past dates.");
-    return false;
-  }
+
 }
 </script>
 
