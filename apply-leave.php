@@ -326,10 +326,10 @@ function  myFunction22() {
         
 
     }
-var date=new Date;
 
 
-}
+
+
 </script>
 
 
