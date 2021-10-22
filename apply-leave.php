@@ -303,7 +303,11 @@ var date=new Date;
 
 let x = document.forms["addemp"]["fromdate"].value;
   var date2=new Date(x)
-  if ((date2)<date) {
+  var datesree=date2.getDate
+  var datesree2=date.getDate
+  console.log(datesree)
+  console.log(datesree2)
+  if (datesree<datesree2) {
     alert("Sorry, you cannot apply leaves for past dates.");
     return false;
   }
