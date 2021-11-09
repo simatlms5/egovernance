@@ -42,7 +42,7 @@ try {
 
 
     //Recipients
-    $mail->setFrom('simatlms5@gmail.com', 'E-Governance');
+    $mail->setFrom('egov@simat.ac.in', 'E-Governance');
     $mail->addAddress($to,$name);     
               
    
