@@ -114,6 +114,16 @@ else{
         $query->bindParam(':deptcode',$dept,PDO::PARAM_STR);
         $query->bindParam(':finalarrangement',$arrangement,PDO::PARAM_STR);
         $query->execute();
+        $lastInsertId = $dbh->lastInsertId();
+        if($lastInsertId)
+        {
+            $msg="Leave applied successfully";
+            smtp_mailer($hodmail,"Leave Application",$fname,$lname,"$lastInsertId");
+        }
+        else 
+        {
+            $error="Something went wrong. Please try again";
+        }
 
         $sql2="INSERT INTO tblleaves(LeaveType,ToDate,FromDate,Description,Status,IsRead,empid,DayCount,dept_code,MailSent,AltArrangement) VALUES(:leavetype,:todate,:fromdate,:description,:status,:isread,:empid,:nofdays,:deptcode,0,:finalarrangement)";
                 // replace arrangement2 with the new altarrangement name
@@ -130,16 +140,7 @@ else{
         $query->bindParam(':deptcode',$dept,PDO::PARAM_STR);
         $query->bindParam(':finalarrangement',$arrangement,PDO::PARAM_STR);
         $query->execute();
-        $lastInsertId = $dbh->lastInsertId();
-        if($lastInsertId)
-        {
-            $msg="Leave applied successfully";
-            smtp_mailer($hodmail,"Leave Application",$fname,$lname,"$lastInsertId");
-        }
-        else 
-        {
-            $error="Something went wrong. Please try again";
-        }
+       
     
     }
     ?>
