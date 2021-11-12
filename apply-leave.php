@@ -121,7 +121,7 @@ else{
         if($lastInsertId)
         {
             $msg="Leave applied successfully";
-            smtp_mailer($hodmail,"Leave Application","Leave",$lastInsertId);
+            smtp_mailer("aswinvharidas@gmail.com","Leave Application","Aswin","Hello");
         }
         else 
         {
