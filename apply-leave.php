@@ -71,6 +71,7 @@ else{
         $query = $dbh->prepare($mailhod);
         $query->bindParam(':hod',$hod,PDO::PARAM_STR);
         $query->execute();
+        // echo $mailhod;
         $results=$query->fetchAll(PDO::FETCH_OBJ);
         if($query->rowCount() > 0)
         {
@@ -120,7 +121,7 @@ else{
         if($lastInsertId)
         {
             $msg="Leave applied successfully";
-            smtp_mailer($hodmail,"Leave Application","Aswin",$lastInsertId);
+            smtp_mailer($hodmail,"Leave Application","Leave",$lastInsertId);
         }
         else 
         {
