@@ -1,6 +1,6 @@
 <?php
 session_start();
-// error_reporting(0);
+error_reporting(0);
 include('includes/config.php');
 include('./mailnotification.php');
 if(strlen($_SESSION['emplogin'])==0)
@@ -12,8 +12,21 @@ else{
     // code for inserting into leave table
     if(isset($_POST['apply']))
     {
-        
-
+        $facid = $_SESSION['emplogin'];
+        $facname = "SELECT FirstName, LastName from tblemployees where EmpId = :facid";
+        $query = $dbh->prepare($facname);
+        $query->bindParam(':facid',$facid,PDO::PARAM_STR);
+        $query->execute();
+        $results=$query->fetchAll(PDO::FETCH_OBJ);
+        if($query->rowCount() > 0)
+        {
+            foreach($results as $result)
+            {
+                $fname = $result->FirstName;
+                $lname = $result->LastName;
+                
+            }
+        }
 
         $empid=$_SESSION['eid'];
         $leavetype=$_POST['leavetype'];
@@ -121,7 +134,7 @@ else{
         if($lastInsertId)
         {
             $msg="Leave applied successfully";
-            smtp_mailer("aswinvharidas@gmail.com","Leave Application","Aswin","Hello");
+            smtp_mailer($hodmail,"Leave Application",$fname,$lname,"$lastInsertId");
         }
         else 
         {

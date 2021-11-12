@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 
 include('vendor/autoload.php');
 
-function smtp_mailer($to,$subject,$name,$remarks){
+function smtp_mailer($to,$subject,$fname,$lname,$lid){
 $mail = new PHPMailer(true);
 
 try {
@@ -51,9 +51,8 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = $subject;
-    $mail->Body    = 'Your leave application has been Approved. Please loging to E-Governance portal for further details.<br><hr><b>Leave Remarks  : </b>';
-    $mail->Body .= $remarks;
-    $mail->Body .= '<br><br><br> This is an auto-generated message hence there is no need to reply.';
+    $mail->Body    = $fname.' '.$lname.' has applied for a leave. Please check the E-governance portal to view the details or check the link below : <br>';
+    $mail->Body .= 'http://simat.ac.in/simatlms/hod/leave-details.php?leaveid='.$lid;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
