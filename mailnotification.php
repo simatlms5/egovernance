@@ -3,9 +3,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-include('principal/vendor/autoload.php');
+include('vendor/autoload.php');
 
-function smtp_mailer($to,$subject,$name,$lid){
+function smtp_mailer($to,$subject,$fname,$lname,$lid){
 $mail = new PHPMailer(true);
 
 try {
@@ -15,11 +15,10 @@ try {
     // $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     // $mail->Username   = 'simatlms5@gmail.com';                     //SMTP username
-    // $mail->Password   = '#SimatLMS100%';                               //SMTP password
+    // $mail->Password   = '#Simat@LMS100%';                               //SMTP password
     // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    //college mail code below
     $mail->isSMTP();   
     
     $mail->SMTPOptions = array(
@@ -30,12 +29,12 @@ try {
         )
     );
     
-    // //Send using SMTP
+    //Send using SMTP
     $mail->Host       = 'localhost';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = false;                                   //Enable SMTP authentication
     $mail->Username   = 'egov@simat.ac.in';                     //SMTP username
     $mail->Password   = 'simat123#';                               //SMTP password
-    // // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465; 
 
     $mail->isSendmail();
@@ -52,8 +51,8 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = $subject;
-    $mail->Body = $name;
-    $mail->Body .= " has applied for a leave, pleace check the E-Governance Portal for further details or click this link below : <br> http://simat.ac.in/simatlms/hod/leave-details.php?leaveid=".$lid;
+    $mail->Body    = $fname.' '.$lname.' has applied for a leave. Please check the E-governance portal to view the details or check the link below : <br>';
+    $mail->Body .= 'http://simat.ac.in/simatlms/hod/leave-details.php?leaveid='.$lid;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();

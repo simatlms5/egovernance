@@ -12,8 +12,21 @@ else{
     // code for inserting into leave table
     if(isset($_POST['apply']))
     {
-        
-
+        $facid = $_SESSION['emplogin'];
+        $facname = "SELECT FirstName, LastName from tblemployees where EmpId = :facid";
+        $query = $dbh->prepare($facname);
+        $query->bindParam(':facid',$facid,PDO::PARAM_STR);
+        $query->execute();
+        $results=$query->fetchAll(PDO::FETCH_OBJ);
+        if($query->rowCount() > 0)
+        {
+            foreach($results as $result)
+            {
+                $fname = $result->FirstName;
+                $lname = $result->LastName;
+                
+            }
+        }
 
         $empid=$_SESSION['eid'];
         $leavetype=$_POST['leavetype'];
@@ -71,6 +84,7 @@ else{
         $query = $dbh->prepare($mailhod);
         $query->bindParam(':hod',$hod,PDO::PARAM_STR);
         $query->execute();
+        // echo $mailhod;
         $results=$query->fetchAll(PDO::FETCH_OBJ);
         if($query->rowCount() > 0)
         {
@@ -100,6 +114,16 @@ else{
         $query->bindParam(':deptcode',$dept,PDO::PARAM_STR);
         $query->bindParam(':finalarrangement',$arrangement,PDO::PARAM_STR);
         $query->execute();
+        $lastInsertId = $dbh->lastInsertId();
+        if($lastInsertId)
+        {
+            $msg="Leave applied successfully";
+            smtp_mailer($hodmail,"Leave Application",$fname,$lname,"$lastInsertId");
+        }
+        else 
+        {
+            $error="Something went wrong. Please try again";
+        }
 
         $sql2="INSERT INTO tblleaves(LeaveType,ToDate,FromDate,Description,Status,IsRead,empid,DayCount,dept_code,MailSent,AltArrangement) VALUES(:leavetype,:todate,:fromdate,:description,:status,:isread,:empid,:nofdays,:deptcode,0,:finalarrangement)";
                 // replace arrangement2 with the new altarrangement name
@@ -116,16 +140,7 @@ else{
         $query->bindParam(':deptcode',$dept,PDO::PARAM_STR);
         $query->bindParam(':finalarrangement',$arrangement,PDO::PARAM_STR);
         $query->execute();
-        $lastInsertId = $dbh->lastInsertId();
-        if($lastInsertId)
-        {
-            $msg="Leave applied successfully";
-            smtp_mailer($hodmail,"Leave Application","Aswin",$lastInsertId);
-        }
-        else 
-        {
-            $error="Something went wrong. Please try again";
-        }
+       
     
     }
     ?>
