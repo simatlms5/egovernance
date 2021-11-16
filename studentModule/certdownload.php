@@ -4,7 +4,7 @@ include('includes/config.php');
 $docno = $_GET['docno'];
 $sql = "SELECT * FROM bonafide_cert WHERE DocumentNumber=:docno";
 $query = $dbh->prepare($sql);
-$query->bindParam(':admno',$admno,PDO::PARAM_STR);
+// $query->bindParam(':admno',$admno,PDO::PARAM_STR);
 $query->bindParam(':docno',$docno,PDO::PARAM_STR);
 $query->execute();  
 $results=$query->fetchAll(PDO::FETCH_OBJ);
