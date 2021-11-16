@@ -2,6 +2,8 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
+include('./mailnotification.php');
+
 if(strlen($_SESSION['alogin'])==0)
     {   
 header('location:index.php');
@@ -95,6 +97,7 @@ if(isset($_POST['update']))
     // $query->bindParam(':did',$did,PDO::PARAM_STR); do not uncomment this line, page will crash
     $query->execute();
     $msg="Leave updated Successfully";
+    smtp_mailer("principal@simat.ac.in","New Leave Application"):
 }
 
 
