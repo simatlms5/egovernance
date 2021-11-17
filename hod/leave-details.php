@@ -2,7 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
-// include('./mailnotification.php');
+include('./mailnotification.php');
 
 if(strlen($_SESSION['alogin'])==0)
     {   
