@@ -44,7 +44,7 @@ try {
     $mail->Subject = $subject;
     $mail->Body    = 'Your Certificate application has been Approved. Please loging to E-Governance portal to download the certificate using your <b>Document Number  : ';
     $mail->Body .= $docno;
-    $mail->Body .= '</b> and <b>Admission Number</b>. Or Click this link below : <br>http://simat.ac.in/simatlms/studentModule/certdownload.php?docno='.$docno.' <br><br><br> This is an auto-generated message hence there is no need to reply.';
+    $mail->Body .= '</b> and <b>Admission Number</b>. Or Click this link below : <br>simat.ac.in/simatlms/studentModule/certdownload.php?docno='.$docno.' <br><br><br> This is an auto-generated message hence there is no need to reply.';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
